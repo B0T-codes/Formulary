@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Formulary | Class 10</title>
+    <link rel="icon" href="/My Projects/Formulary/images/GUD.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      *::-webkit-scrollbar {
+        width: 0.3rem;
+      }
+
+      *::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        background: transparent;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+      }
+
+      .ch {
+        list-style: none;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      header {
+        position: fixed;
+        top: 0px;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+        /* background: linear-gradient(to right, #141e30, #243b55); */
+        width: 100%;
+        z-index: 1000;
+      }
+
+      section {
+        position: relative;
+        height: calc(100vh - 0rem);
+        width: 100%;
+        background-color: #96c8fb;
+        background-image: linear-gradient(315deg, #96c8fb 0%, #ddbdfc 74%);
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .overlay {
+        position: sticky;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.4);
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .container {
+        max-width: 65rem;
+        padding: 0 2rem;
+        height: 3rem;
+        margin: 0 auto;
+        display: flex;
+        position: relative;
+      }
+
+      .logo-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-btn {
+        flex: 3;
+        display: flex;
+      }
+
+      .nav-links {
+        flex: 2;
+      }
+
+      .log-sign {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        flex: 1;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        line-height: 3rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: transparent;
+        border-radius: 2rem;
+        line-height: 1;
+        margin: 0 0.2rem;
+        transition: 0.3s;
+      }
+
+      .btn.solid {
+        background-color: transparent;
+        color: #fff;
+      }
+
+      .btn.solid:hover {
+        transform: scale(1.1);
+      }
+
+      .nav-links > ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      li {
+        position: relative;
+      }
+
+      li > a {
+        line-height: 3rem;
+        color: #fff;
+        padding: 0 0.8rem;
+        letter-spacing: 1px;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        transition: 0.5s;
+      }
+
+      li:hover > a {
+        transform: scale(1.1);
+      }
+
+      .hamburger-menu-container {
+        flex: 1;
+        display: none;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .hamburger-menu {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .hamburger-menu div {
+        width: 1.6rem;
+        height: 3px;
+        border-radius: 3px;
+        background-color: #fff;
+        position: relative;
+        z-index: 1001;
+        transition: 0.5s;
+      }
+
+      .hamburger-menu div:before,
+      .hamburger-menu div:after {
+        content: "";
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        background-color: #fff;
+        border-radius: 3px;
+        transition: 0.5s;
+      }
+
+      .hamburger-menu div:before {
+        transform: translateY(-7px);
+      }
+
+      .hamburger-menu div:after {
+        transform: translateY(7px);
+      }
+
+      #check {
+        position: absolute;
+        top: 50%;
+        right: 1.5rem;
+        transform: translateY(-50%);
+        width: 2.5rem;
+        height: 2.5rem;
+        z-index: 90000;
+        cursor: pointer;
+        opacity: 0;
+        display: none;
+      }
+
+      #check:checked ~ .hamburger-menu-container .hamburger-menu div {
+        background-color: transparent;
+      }
+
+      #check:checked ~ .hamburger-menu-container .hamburger-menu div:before {
+        transform: translateY(0) rotate(-45deg);
+      }
+
+      #check:checked ~ .hamburger-menu-container .hamburger-menu div:after {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      @media (max-width: 920px) {
+        .hamburger-menu-container {
+          display: flex;
+        }
+
+        #check {
+          display: block;
+        }
+
+        .nav-btn {
+          position: fixed;
+          height: calc(100vh - 8rem);
+          top: 6rem;
+          bottom: 2rem;
+          left: 12.5rem;
+          width: 100%;
+          background-color: rgba(0, 0, 0, 1);
+          flex-direction: column;
+          align-items: left;
+          justify-content: space-between;
+          overflow-y: hidden;
+          overflow-x: hidden;
+          transform: translateX(100%);
+          transition: 0.6s;
+          padding-right: 12rem;
+          border-radius: 3vmax 0vmax 0vmax 3vmax;
+        }
+
+        #check:checked ~ .nav-btn {
+          transform: translateX(0);
+        }
+
+        .nav-links {
+          flex: initial;
+          width: 100%;
+        }
+
+        .nav-links > ul {
+          flex-direction: column;
+        }
+
+        li {
+          width: 100%;
+          opacity: 1;
+          transform: translateY(15px);
+        }
+
+        li > a {
+          line-height: 1;
+          padding: 1.6rem;
+        }
+
+        li:hover > a {
+          transform: scale(1.1);
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .log-sign {
+          flex: initial;
+          width: 100%;
+          padding: 1.5rem 1.9rem;
+          margin-bottom: 1rem;
+          justify-content: center;
+          opacity: 1;
+          transform: translateY(15px);
+        }
+      }
+
+      .contents {
+        max-width: 1500px;
+        margin-top: 4rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+      }
+      .rt {
+        overflow-x: auto;
+      }
+
+      table {
+        border: 1px solid black;
+        border-radius: 1em;
+      }
+
+      table th,
+      td {
+        border-bottom: 1px solid black;
+      }
+
+      table tr:last-child > th {
+        border-bottom: 0em;
+      }
+
+      table tr:last-child > td {
+        border-bottom: 0em;
+      }
+
+      th {
+        text-align: center;
+        padding: 20px;
+      }
+
+      td {
+        text-align: left;
+        padding-left: 38px;
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+      }
+
+      .c7head {
+        margin-top: 10px;
+      }
+
+      .rt::-webkit-scrollbar {
+        width: 0.1rem;
+      }
+
+      .rt::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 2vmax;
+        margin-top: 56px;
+      }
+
+      .rt::-webkit-scrollbar-thumb {
+        width: 2px;
+        background: rgba(0, 0, 0, 0.21);
+        border-radius: 2vmax;
+      }
+
+      .t3d {
+        border-right: 1px solid black;
+      }
+
+     
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <input type="checkbox" name="" id="check" />
+        <div class="logo-container">
+          <a href="index.html"><h3 class="logo">Formulary</h3></a>
+        </div>
+
+        <div class="nav-btn">
+          <div class="nav-links">
+            <ul class="ch" >
+              <li><a href="index.html">Home</a></li>
+              <li><a href="class6.html">Class 6</a></li>
+              <li><a href="class7.html">Class 7</a></li>
+              <li><a href="class8.html">Class 8</a></li>
+              <li><a href="class9.html">Class 9</a></li>
+            </ul>
+          </div>
+          <div class="log-sign">
+            <a href="contact.html" class="btn solid">Contact</a>
+          </div>
+        </div>
+        <div class="hamburger-menu-container">
+          <div class="hamburger-menu">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="overlay">
+          <div class="contents">
+            <center>
+              <div
+                class="c7head"
+                style="
+                  background-color: rgba(255, 255, 255, 0.65);
+                  border-radius: 3vmax;
+                  width: 50%;
+                  box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.05);
+                  padding: 20px;
+                "
+              >
+                <h1>Maths Formulas for Class 10</h1>
+              </div>
+              <br />
+            </center>
+            <div
+              style="
+                background-color: rgba(255, 255, 255, 0.65);
+                border-radius: 3vmax;
+                box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.05);
+                padding: 20px;
+                margin-right: 0.7rem;
+                margin-bottom: 1rem;
+                margin-left: 1rem;
+                padding-top: 30px;
+                padding-bottom: 42px;
+                padding-right: 42px;
+                padding-left: 45px;
+              "
+            >
+            <h2> Arithmetic Progression (AP)</h2><br>
+            <p>If a1, a2, a3, a4….. be the terms of an AP and d be the common difference between each term, then the sequence can be written as: a, a + d, a + 2d, a + 3d, a + 4d…… a + nd. where a is the first term and (a + nd) is the (n – 1) th term. So, the formula to calculate the nth term of AP is given as:</p>
+            <br><center><b>n<sup>th</sup>term = a + (n-1) d</b></center>
+            <br>
+            <p>The sum for the nth term of AP where a is the 1st term, d is the common difference, and l is the last term is given as:</p>
+            <br>
+            <center><b>S<sub>n</sub> = <sup>n</sup>&frasl;<sub>2</sub> [2a + (n-1) d] or S<sub>n</sub> = <sup>n</sup>&frasl;<sub>2</sub> [a + l]</b></center>
+            <br><h2> Linear Equations</h2><br>
+            <p>Linear equations in one, two, and three variables have the following forms:</p>
+            <br>
+            <div class="rt"><table class="t1">
+                <tr>
+                    <td class="t3d">Linear Equation in one Variable</td>
+                    <td class="t3d">ax + b=0</td>
+                    <td >Where a ≠ 0 and a & b are real numbers</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Linear Equation in Two Variables</td>
+                    <td class="t3d">ax + by + c = 0</td>
+                    <td>Where a ≠ 0 & b ≠ 0 and a, b & c are real numbers</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Linear Equation in Three Variables</td>
+                    <td class="t3d">ax + by + cz + d = 0</td>
+                    <td>Where a ≠ 0, b ≠ 0, c ≠ 0 and a, b, c, d are real numbers</td>
+                </tr>
+                
+            </table></div><br>
+            <p><p>The pair of linear equations in two variables are given as:</p></p><br>
+            <center>a<sub>1</sub>x+b<sub>1</sub>+c<sub>1</sub>=0 and a<sub>2</sub>x+b<sub>2</sub>+c<sub>2</sub>=0</center>
+            <p>Where a<sub>1</sub>, b<sub>1</sub>, c<sub>1</sub>, & a<sub>2</sub>, b<sub>2</sub>, c<sub>2</sub> are real numbers & a<sub>1</sub><sup>2</sup>+b<sub>1</sub><sup>2</sup> ≠ 0 & a<sub>2</sub><sup>2</sup> + b<sub>2</sub><sup>2</sup> ≠ 0</p><br>
+            <p><b>Quick Note:</b> Linear equations can also be represented in graphical form.</p>
+            <br><h2>Trigonometry </h2><br>
+            <p>The Trigonometric Formulas for Class 10 covers the basic trigonometric functions for a right-angled triangle i.e. Sine (sin), Cosine (cos), and Tangent (tan) which can be used to derive Cosecant (cos), Secant (sec), and Cotangent (cot).
+            <br>
+            <br>
+            Let a right-angled triangle ABC is right-angled at point B and have <em>∠θ</em> is one of the other two angles.
+            <br>
+            <br>
+            sin θ = <sup>Side opposite to  angle θ</sub>&frasl;<sub>Hypotenuse</sup> = <sup>perpendicular</sup>&frasl;<sub>Hypotenuse</sub> = <Sup>P</Sup>&frasl;<Sub>H</Sub>
+            <br>
+            sin θ = <sup>Adjacent side to angle θ</sub>&frasl;<sub>Hypotenuse</sup> = <sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub> = <Sup>B</Sup>&frasl;<Sub>H</Sub>
+            <br>
+            tan θ = <sup>Side opposite to angle θ</sup>&frasl;<sub>Adjacent side to angle θ</sub> = <sup>P</sup>&frasl;<Sub>H</Sub>
+            <br>
+            sec θ = <sup>1</sup>&frasl;<sub>Cosθ</sub>
+                <br>
+            cot θ = <sup>1</sup>&frasl;<sub>tanθ</sub>
+         <br>
+            cosec θ = <sup>1</sup>&frasl;<sub>sinθ</sub>
+         <br>
+            tan θ = <sup>Sinθ</sup>&frasl;<sub>cosθ</sub>
+            <br>
+            <br>
+            The Trigonometric Table comprising the values of these trigonometric functions for standard angles is as under:
+            <br><br>
+            <div class="rt"><table class="t2">
+                <tr>
+                    <th class="t3d">Angle</th>
+                    <th class="t3d">0°</th>
+                    <th class="t3d">30°</th>
+                    <th class="t3d">45°</th>
+                    <th class="t3d">60°</th>
+                    <th>90°</th>
+                </tr>
+                <tr>
+                    <td class="t3d">sinθ</td>
+                    <td class="t3d">0</td>
+                    <td class="t3d"><sup>1</sup>&frasl;<sub>2</sub></td>
+                    <td class="t3d"><Sup>1</Sup>&frasl;<sub>√2</sub></td>
+                    <td class="t3d"><sup>√3</sup>&frasl;<Sub>2</Sub></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td class="t3d">cosθ</td>
+                    <td class="t3d">1</td>
+                    <td class="t3d"><sup>√3</sup>&frasl;<sub>2</sub></td>
+                    <td class="t3d"><sup>1</sup>&frasl;<sub>√2</sub></td>
+                    <td class="t3d"><sup>1</sup>&frasl;<Sub>2</Sub></td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td class="t3d">tanθ</td>
+                    <td class="t3d">0</td>
+                    <td class="t3d"><sup>1</sup>&frasl;<sub>√3</sub></td>
+                    <td class="t3d">1</td>
+                    <td class="t3d">√3</td>
+                    <td>Undefined</td>
+                </tr>
+                <tr>
+                    <td class="t3d">cotθ</td>
+                    <td class="t3d">Undefined</td>
+                    <td class="t3d">√3</td>
+                    <td class="t3d">1</td>
+                    <td class="t3d"><sup>1</sup>&frasl;<sub>√3</sub></td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td class="t3d">secθ</td>
+                    <td class="t3d">1</td>
+                    <td class="t3d"><sup>2</sup>&frasl;<sub>√3</sub></td>
+                    <td class="t3d">√2</td>
+                    <td class="t3d">2</td>
+                    <td>Undefined</td>
+                </tr>
+                <tr>
+                    <td class="t3d">cosecθ</td>
+                    <td class="t3d">Undefined</td>
+                    <td class="t3d">2</td>
+                    <td class="t3d">√2</td>
+                    <td class="t3d"><sup>2</sup>&frasl;<sub>√3</sub></td>
+                    <td>1</td>
+                </tr>
+            </table></div>
+            <br>
+            Some other trigonometric formulas are given below:
+            <br>
+            <ol>
+              <li>sin (90° – θ) = cos θ</li>
+              <br><li>cos (90° – θ) = sin θ</li>
+              <br><li>tan (90° – θ) = cot θ</li>
+              <br><li>cot (90° – θ) = tan θ</li>
+              <br><li>sec (90° – θ) = cosecθ</li>
+              <br><li>cosec (90° – θ) = secθ</li>
+              <br><li>sin2θ + cos2 θ = 1</li>
+              <br><li>sec2 θ = 1 + tan2θ for 0° ≤ θ < 90°</li>
+              <br><li>Cosec2 θ = 1 + cot2 θ for 0° ≤ θ ≤ 90°</li>
+            </ol>
+        
+        
+        </p><br><br>
+        <h2>Algebra & Quadratic Equations</h2><br>
+        <p>
+            To know the algebra formulas for Class 10, first, you need to get familiar with Quadratic Equations.<br>
+        <br>
+        The Quadratic Formula: For a quadratic equation px<Sup>2</Sup> + qx + r = 0, the values of x which are the solutions of the equation are given by:
+        <br><br>
+        <center>x = -b± <sup>√b<sup>2</sup> - 4ac</sup>&frasl;<sub>2a</sub></center><br>
+        <br>
+        Now you know the basic quadratic equation.
+        <br>
+        <br>
+        Let us now go through the list of algebra formulas for Class 10:
+        <br>
+        <ol>
+            <li>(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></li>
+            <br><li>(a – b)<sup>2</sup> = a<sup>2</sup> – 2ab + b<sup>2</sup></li>
+            <br><li>(a + b) (a – b) = a<sup>2</sup> -b<sup>2</sup></li>
+            <br><li>(x + a) (x + b) = x<sup>2</sup> + (a + b) x + ab</li>
+            <br><li>(x + a) (x – b) = x<sup>2</sup> + (a – b) x – ab</li>
+            <br><li>(x – a) (x + b) = x<sup>2</sup> + (b – a) x – ab</li>
+            <br><li>(x – a) (x – b) = x<sup>2</sup> – (a + b) x + ab</li>
+            <br><li>(a + b)<sup>3</sup> = a<sup>3</sup> + b<sup>3</sup> + 3ab (a + b)</li>
+            <br><li>(a – b)<sup>3</sup> = a<sup>3</sup> – b<sup>3</sup> – 3ab (a – b)</li>
+            <br><li>(x + y + z)<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> + 2xy +2yz + 2xz</li>
+            <br><li>(x + y – z)<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> + 2xy – 2yz – 2xz</li>
+            <br><li>(x – y + z)<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> – 2xy – 2yz + 2xz</li>
+            <br><li>(x – y – z)<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> – 2xy + 2yz – 2xz</li>
+            <br><li>x<sup>3</sup> + y<sup>3</sup> + z<sup>3</sup> – 3xyz = (x + y + z) (x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> – xy – yz -xz)</li>
+            <br><li>x<sup>2</sup> + y<sup>2</sup> =  <sup>1</sup>&frasl;<sub>2</sub>
+        
+                [(x + y)<sup>2</sup> + (x – y)<sup>2</sup>]</li>
+                <br><li>(x + a) (x + b) (x + c) = x<sup>3</sup> + (a + b + c)x<sup>2</sup> + (ab + bc + ca)x + abc</li>
+                <br><li>x<sup>3</sup> + y<sup>3</sup> = (x + y) (x<sup>2</sup> – xy + y<sup>2</sup>)</li>
+            <br><li>x<sup>3</sup> – y<sup>3</sup> = (x – y) (x<sup>2</sup> + xy + y<sup>2</sup>)</li>
+            <br><li>x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> – xy – yz – zx = 
+        
+                [(x – y)<sup>2</sup> + (y – z)<sup>2</sup> + (z – x)<sup>2</sup>]</li>
+            
+        </ol>
+        <br><br>
+        <b>Quick Note:</b> These formulas will be important in higher classes and various comeptitive examninations. So, memorize them and understand them well.
+        </p><br>
+        <h2>Circle</h2><br>
+        <p>Circle formulas act as a base for Mensuration. The Class 10 Maths Circle formulas for a circle of radius r are given below:
+            <br>
+            <ol>
+                <li>Circumference of the circle = 2 π r</li>
+                <br><li>Area of the circle = π r<sup>2</sup></li>
+                <br><li> Area of the sector of angle θ = (θ/360) × π r<sup>2</sup></li>
+                <br><li>Length of an arc of a sector of angle θ = (θ/360) × 2 π r</li>
+            </ol>
+        </p><br><br>
+        <h2>Surface Area & Volume</h2><br>
+        <p>
+            These formulas are very important for successfully solving mensuration questions. Find below the formulas in a tabulated form for your convenience.
+            <br><br>
+            Here, LSA = Lateral Surface Area, <br>TSA = Total Surface Area.<br><br>
+            <div class="rt">
+            <table class="t3">
+                
+                <tr>
+                    <td class="t3d">Cuboid</td>
+                    <td><b>LSA:</b> 2h(l + b)<br>
+                        <b>TSA:</b> 2(lb + bh + hl)<br>
+                        <b>Volume:</b> l × b × h<br>
+                        <br>
+                        l = length,<br>
+                        b = breadth,<br>
+                        h = height</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Cube</td>
+                    <td><b>LSA:</b> 4a<sup>2</sup><br>
+                        <b>TSA:</b> 6a<sup>2</sup><br>
+                        <b>Volume:</b> a<sup>3</sup><br>
+                        <br>
+                        a = sides of a cube</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Right Pyramid</td>
+                    <td><b>LSA:</b> ½ × p × l<br>
+                        <b>TSA:</b> LSA + Area of the base<br>
+                        <b>Volume:</b> ⅓ × Area of the base × h<br>
+                        <br>
+                        p = perimeter of the base,<br>
+                        l = slant height,
+                        <br> h = height</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Right Circular Cylinder</td>
+                    <td><b>LSA:</b> 2(π × r × h)<br>
+                        <b>TSA:</b> 2πr (r + h)<br>
+                        <b>Volume:</b> π × r2 × h<br>
+                        <br>
+                        r = radius,<br>
+                        h = height</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Right Circular Cone</td>
+                    <td><b>LSA:</b> πrl<br>
+                        <b>TSA:</b> π × r × (r + l)<br>
+                        <b>Volume:</b> ⅓ × (πr2h)<br>
+                        <br>
+                        r = radius,<br>
+                        l = slant height,<br>
+                        h = height</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Right Prism</td>
+                    <td><b>LSA:</b> p × h<br>
+                        <b>TSA:</b> LSA × 2B<br>
+                        <b>Volume:</b> B × h<br>
+                        <br>
+                        p = perimeter of the base,<br>
+                        B = area of base, h = height</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Sphere</td>
+                    <td><b>LSA:</b> 4 × π × r2<br>
+                        <b>TSA:</b> 4 × π × r2<br>
+                        <b>Volume:</b> 4/3 × (πr3)<br>
+                        <br>
+                        r = radius</td>
+                </tr>
+                <tr>
+                    <td class="t3d">Hemisphere</td>
+                    <td>
+                        <b>LSA:</b> 2 × π × r2<br>
+                        <b>TSA:</b> 3 × π × r2<br>
+                        <b>Volume:</b> ⅔ × (πr3)<br>
+        <br>
+                        r = radius
+                    </td>
+                </tr>
+            </table>
+        </p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

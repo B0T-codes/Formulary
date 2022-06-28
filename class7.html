@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Formulary | Class 7</title>
+    <link rel="icon" href="/My Projects/Formulary/images/GUD.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+        * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+
+
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  /* background: linear-gradient(to right, #141e30, #243b55); */
+  width: 100%;
+  z-index: 1000;
+}
+
+section {
+  position: relative;
+  height: calc(100vh - 0rem);
+  width: 100%;
+  background-color: #96c8fb;
+  background-image: linear-gradient(315deg, #96c8fb 0%, #ddbdfc 74%);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.overlay {
+  position: sticky;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.container {
+  max-width: 65rem;
+  padding: 0 2rem;
+  height: 3rem;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+}
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nav-btn {
+  flex: 3;
+  display: flex;
+}
+
+.nav-links {
+  flex: 2;
+}
+
+.log-sign {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  flex: 1;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  border: transparent;
+  border-radius: 2rem;
+  line-height: 1;
+  margin: 0 0.2rem;
+  transition: 0.3s;
+}
+
+.btn.solid{
+  background-color: transparent;
+  color: #fff;
+}
+
+
+.btn.solid:hover {
+  transform: scale(1.1);
+}
+
+.nav-links > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  position: relative;
+}
+
+li > a {
+  line-height: 3rem;
+  color: #fff;
+  padding: 0 0.8rem;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: 0.5s;
+}
+
+li:hover > a {
+  transform: scale(1.1);
+}
+
+.hamburger-menu-container {
+  flex: 1;
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hamburger-menu {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hamburger-menu div {
+  width: 1.6rem;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #fff;
+  position: relative;
+  z-index: 1001;
+  transition: 0.5s;
+}
+
+.hamburger-menu div:before,
+.hamburger-menu div:after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+
+.hamburger-menu div:before {
+  transform: translateY(-7px);
+}
+
+.hamburger-menu div:after {
+  transform: translateY(7px);
+}
+
+#check {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 90000;
+  cursor: pointer;
+  opacity: 0;
+  display: none;
+}
+
+#check:checked ~ .hamburger-menu-container .hamburger-menu div {
+  background-color: transparent;
+}
+
+#check:checked ~ .hamburger-menu-container .hamburger-menu div:before {
+  transform: translateY(0) rotate(-45deg);
+}
+
+#check:checked ~ .hamburger-menu-container .hamburger-menu div:after {
+  transform: translateY(0) rotate(45deg);
+}
+
+@media (max-width: 920px) {
+  .hamburger-menu-container {
+    display: flex;
+  }
+
+  #check {
+    display: block;
+  }
+
+  .nav-btn {
+    position: fixed;
+    height: calc(100vh - 8rem);
+    top: 6rem;
+    bottom: 2rem;
+    left: 12.5rem;
+    width: 100%;
+    background-color: rgba(0,0,0,1);
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transform: translateX(100%);
+    transition: 0.6s;
+    padding-right: 12rem;
+    border-radius: 3vmax 0vmax 0vmax 3vmax;
+  }
+
+  #check:checked ~ .nav-btn {
+    transform: translateX(0);
+  }
+
+  .nav-links {
+    flex: initial;
+    width: 100%;
+  }
+
+  .nav-links > ul {
+    flex-direction: column;
+  }
+
+  li {
+    width: 100%;
+    opacity: 1;
+    transform: translateY(15px);
+  }
+
+  li > a {
+    line-height: 1;
+    padding: 1.6rem;
+  }
+
+  li:hover > a {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .log-sign {
+    flex: initial;
+    width: 100%;
+    padding: 1.5rem 1.9rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    opacity: 1;
+    transform: translateY(15px);
+  }
+}
+
+
+.contents {
+  max-width: 1500px;
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+.rt {
+  overflow-x: auto;
+}
+
+table {
+  border: 1px solid black;
+  border-radius: 1em;
+}
+
+table th,
+td {
+  border-bottom: 1px solid black;
+}
+
+table tr:last-child>th {
+  border-bottom: 0em;
+}
+
+table tr:last-child>td {
+  border-bottom: 0em;
+}
+
+th {
+  border-right: 1px solid black;
+  text-align: center;
+  padding: 20px;
+}
+
+td {
+  text-align: left;
+  padding-left: 38px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px
+}
+
+.c7head {
+  margin-top: 10px;
+}
+
+.rt::-webkit-scrollbar {
+  width: 0.1rem;
+}
+
+.rt::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2vmax;
+  margin-top: 56px;
+}
+
+.rt::-webkit-scrollbar-thumb {
+  width: 2px;
+  background: rgba(0, 0, 0, .21);
+  border-radius: 2vmax;
+  
+}
+        
+    </style>
+</head>
+
+<body>
+    <header>
+      <div class="container">
+        <input type="checkbox" name="" id="check" />
+        <div class="logo-container">
+          <a href="index.html"><h3 class="logo">Formulary</h3></a>
+        </div>
+
+        <div class="nav-btn">
+          <div class="nav-links">
+            <ul>
+              <li><a href="index.html" >Home</a></li>
+              <li><a href="class6.html" >Class 6</a></li>
+              <li><a href="class8.html" >Class 8</a></li>
+              <li><a href="class9.html" >Class 9</a></li>
+              <li><a href="class10.html" >Class 10</a></li>
+            </ul>
+          </div>
+          <div class="log-sign">
+            <a href="contact.html" class="btn solid">Contact</a>
+          </div>
+        </div>
+        <div class="hamburger-menu-container">
+          <div class="hamburger-menu">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="overlay">
+          <div class="contents">
+            <center>
+              <div
+                class="c7head"
+                style="
+                  background-color: rgba(255, 255, 255, 0.65);
+                  border-radius: 3vmax;
+                  width: 50%;
+                  box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.05);
+                  padding: 20px;
+                "
+              >
+                <h1>Maths Formulas for Class 7</h1>
+              </div>
+              <br />
+            </center>
+            <div
+              style="
+                background-color: rgba(255, 255, 255, 0.65);
+                  border-radius: 3vmax;
+                  box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.05);
+                  padding: 30px;
+                  margin-right: .7rem;
+                  margin-bottom: 1rem;
+                  margin-left: 1rem;
+              "
+            >
+              <div class="rt">
+                <table>
+                  <tr>
+                    <th>Integers Formulas</th>
+                    <td>
+                      <ol>
+                        <li>a – b = a + additive inverse of b = a + (– b)</li>
+                        <li>
+                          a – (– b) = a + additive inverse of (– b) = a + b
+                        </li>
+                        <li>a + (b + c) = (a + b) + c</li>
+                        <li>a × (– b) = (– a) × b = – (a × b)</li>
+                        <li>(– a) × (– b) = a × b</li>
+                        <li>(a × b) × c = a × (b × c)</li>
+                        <li>a × (b + c) = a × b + a × c</li>
+                        <li>a × (b – c) = a × b – a × c</li>
+                        <li>a ÷ (–b) = (– a) ÷ b where b ≠ 0</li>
+                        <li>(– a) ÷ (– b) = a ÷ b where b ≠ 0</li>
+                        <li>a ÷ 0 is not defined & a ÷ 1 = a</li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Fractions and Decimals</th>
+                    <td>
+                      <ol>
+                        <li>
+                          <sup>product of numerators</sup>&frasl;<sub
+                            >product of denominators</sub
+                          >.<br /><br />For
+                          example<sup>4</sup>&frasl;<sub>5</sub>×<sup>3</sup>&frasl;<sub>7</sub>=<sup>4×3</sup>&frasl;<sub>5×7</sub>=<sup>12</sup>&frasl;<sub
+                            >32</sub
+                          >
+                        </li>
+                        <br />
+                        <li>
+                          To multiply a decimal number by 10, 100 or 1000, we
+                          move the decimal point in the number to the right by
+                          as many places as there are zeros over 1. Thus 0.69 ×
+                          10 = 6.9, 0.69 × 100 = 69, 0.69 × 1000 = 690 and for
+                          dimple decimal numbers see the example – 0.6 × 0.9 =
+                          0.54
+                        </li>
+                        <br />
+                        <li>
+                          Division of a decimal number – To divide a decimal
+                          number by a whole number, we first divide them as
+                          whole numbers. Then place the decimal point in the
+                          quotient as in the decimal number. example 12.4 ÷ 4 =
+                          3.1
+                        </li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Data Handling</th>
+                    <td>
+                      The Average or Arithmetic Mean or Mean =
+                      <sup>Sub of observation</sup>&frasl;<sub
+                        >Number of observation</sub
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Simple Equations</th>
+                    <td>
+                      An equation is a condition on a variable such that two
+                      expressions in the variable should have equal value.
+                      Example: 5x + 6 = 26, the LHS and RHS must be balanced
+                      therefore to balance the equation the value of x should be
+                      4. The above equation can be solved as <br />
+                      > 5x = 26 – 6<br />
+                      > 5x = 20 <br />
+                      > x =<sup>20</sup>&frasl;<sub>5</sub><br />
+                      > x = 4
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Lines and Angles</th>
+                    <td>
+                      <ol>
+                        <li>
+                          <b>Two complementary angles:</b> Measures add up to
+                          90°<br />
+                        </li>
+                        <li>
+                          <b>Two supplementary angles:</b> Measures add up to
+                          180°<br />
+                        </li>
+                        <li>
+                          <b>Two adjacent angles:</b> Have a common vertex and a
+                          common arm but no common interior.<br />
+                        </li>
+                        <li><b>Linear pair:</b> Adjacent and supplementary</li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>The Triangle and its Properties</th>
+                    <td>
+                      <ol>
+                        For a triangle ABC:<br />
+                        <li><b>Sides:</b> AB, BC, CA<br /></li>
+                        <li><b>Angles:</b> ∠BAC, ∠ABC, ∠BCA<br /></li>
+                        <li>
+                          <b>Vertices:</b> A, B, C
+                          <br />
+                          <br />
+
+                          For a right-angled triangle QPR, right angles at P:<br />
+                        </li>
+                        <li>
+                          <b>Pythagoras property</b
+                          ><em
+                            >(QR)<sup>2</sup>=(PQ)<sup>2</sup>+(PR)<sup
+                              >2</sup
+                            ></em
+                          ><br />
+                          <p>
+                            “In a right-angled triangle, the square on the
+                            hypotenuse = sum of the squares on the legs “
+                          </p>
+                        </li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Comparing Quantities</th>
+                    <td>
+                      <ol>
+                        <li>
+                          <b>Simple Interest</b> <em>SI=</em
+                          ><sup>P×R×T</sup>&frasl;<sub>100</sub><br />
+                          Where P=Principal, T= Time in years, R=Rate of
+                          interest per annum<br />
+                        </li>
+                        <li>
+                          <b>Rate </b><em>R=</em><sup>SI×100</sup>&frasl;<sub
+                            >P×T</sub
+                          ><br />
+                        </li>
+                        <li>
+                          <b>Principal </b><em>P=</em
+                          ><sup>SI×100</sup>&frasl;<sub>R×T</sub><br />
+                        </li>
+                        <li>
+                          <b>Time </b><em>T=</em><sup>SI×100</sup>&frasl;<sub
+                            >P×R</sub
+                          ><br />
+                        </li>
+                        <li><b>Discount</b> = MP-SP<br /></li>
+                        <li>
+                          <b>Principal</b> = Amount – Simple Interest<br />
+                          If the Rate of Discount is given,<em>Discount = </em
+                          ><sup>Past Rate of discount</sup>&frasl;<sub>100</sub>
+                        </li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Perimeter and Area</th>
+                    <td>
+                      <ol>
+                        <li>
+                          <b>Perimeter of Square:</b> 4a where a is the side of
+                          the square<br />
+                        </li>
+                        <li>
+                          <b>Perimeter of Rectangle:</b> 2(l+b) units, where l
+                          is length and b is the breadth<br />
+                        </li>
+                        <li>
+                          <b>Area of Circle:</b> πr<sup>2</sup> where r is the
+                          radius<br />
+                        </li>
+                        <li>
+                          <b>Area of Rectangle:</b> lb where l = length and b is
+                          the breadth<br />
+                        </li>
+                        <li>
+                          <b>Total Surface Area (TSA) for Cube:</b> 6a<sup
+                            >2</sup
+                          ><br />
+                        </li>
+                        <li><b>TSA of cuboid:</b> 2(lb+bh+hl)</li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Algebraic Expressions</th>
+                    <td>
+                      <ol>
+                        <li>
+                          (a+b)<sup>2</sup> = a<sup>2</sup>+2ab+b<sup>2</sup
+                          ><br />
+                        </li>
+                        <li>
+                          (a-b)<sup>2</sup> = a<sup>2</sup>-2ab+b<sup>2</sup
+                          ><br />
+                        </li>
+                        <li>a<sup>2</sup>-b<sup>2</sup> = (a+b)(a-b)<br /></li>
+                        <li>(x+a)(x+b) = x<sup>2</sup>+x(a+b)+(ab)</li>
+                      </ol>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Exponents and Powers</th>
+                    <td>
+                      <ol>
+                        <li>
+                          P<sup>m</sup>×P<sup>n</sup> = P<sup>m+n</sup><br />
+                        </li>
+                        <li>
+                          P<sup>m</sup>&frasl;P<sup>n</sup> = P<sup>m-n</sup
+                          ><br />
+                        </li>
+                        <li>
+                          (p<sup>m</sup>)<sup>n</sup> = p<sup>mn</sup><br />
+                        </li>
+                        <li>
+                          P<sup>-m</sup> = <sup>1</sup>&frasl;<sub
+                            >p<sup>m</sup></sub
+                          ><br />
+                        </li>
+                        <li>P<sup>1</sup> = 1 <br /></li>
+                        <li>p<sup>0</sup> = 1</li>
+                      </ol>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+</body>
+
+</html>

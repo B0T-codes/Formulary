@@ -1,0 +1,691 @@
+<!doctype HTML>
+<html>
+
+<head>
+    <title>Formulary | Class 6</title>
+    <link rel="icon" href="/My Projects/Formulary/images/GUD.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.ch {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  /* background: linear-gradient(to right, #141e30, #243b55); */
+  width: 100%;
+  z-index: 1000;
+}
+
+section {
+  position: relative;
+  height: calc(100vh - 0rem);
+  width: 100%;
+  background-color: #96c8fb;
+  background-image: linear-gradient(315deg, #96c8fb 0%, #ddbdfc 74%);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.overlay {
+  position: sticky;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  overflow-x: hidden;
+  overflow-y: auto;
+  }
+
+.container {
+  max-width: 65rem;
+  padding: 0 2rem;
+  height: 3rem;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+}
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nav-btn {
+  flex: 3;
+  display: flex;
+}
+
+.nav-links {
+  flex: 2;
+}
+
+.log-sign {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  flex: 1;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  border: transparent;
+  border-radius: 2rem;
+  line-height: 1;
+  margin: 0 0.2rem;
+  transition: 0.3s;
+}
+
+.btn.solid{
+  background-color: transparent;
+  color: #fff;
+}
+
+
+.btn.solid:hover {
+  transform: scale(1.1);
+}
+
+.nav-links > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  position: relative;
+}
+
+li > a {
+  line-height: 3rem;
+  color: #fff;
+  padding: 0 0.8rem;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: 0.5s;
+}
+
+li:hover > a {
+  transform: scale(1.1);
+}
+
+.hamburger-menu-container {
+  flex: 1;
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hamburger-menu {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hamburger-menu div {
+  width: 1.6rem;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #fff;
+  position: relative;
+  z-index: 1001;
+  transition: 0.5s;
+}
+
+.hamburger-menu div:before,
+.hamburger-menu div:after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+
+.hamburger-menu div:before {
+  transform: translateY(-7px);
+}
+
+.hamburger-menu div:after {
+  transform: translateY(7px);
+}
+
+#check {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 90000;
+  cursor: pointer;
+  opacity: 0;
+  display: none;
+}
+
+#check:checked ~ .hamburger-menu-container .hamburger-menu div {
+  background-color: transparent;
+}
+
+#check:checked ~ .hamburger-menu-container .hamburger-menu div:before {
+  transform: translateY(0) rotate(-45deg);
+}
+
+#check:checked ~ .hamburger-menu-container .hamburger-menu div:after {
+  transform: translateY(0) rotate(45deg);
+}
+
+@media (max-width: 920px) {
+  .hamburger-menu-container {
+    display: flex;
+  }
+
+  #check {
+    display: block;
+  }
+
+  .nav-btn {
+    position: fixed;
+    height: calc(100vh - 8rem);
+    top: 6rem;
+    bottom: 2rem;
+    left: 12.5rem;
+    width: 100%;
+    background-color: rgba(0,0,0,1);
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transform: translateX(100%);
+    transition: 0.6s;
+    padding-right: 12rem;
+    border-radius: 2.5vmax 0vmax 0vmax 2.5vmax;
+  }
+
+  #check:checked ~ .nav-btn {
+    transform: translateX(0);
+  }
+
+  .nav-links {
+    flex: initial;
+    width: 100%;
+  }
+
+  .nav-links > ul {
+    flex-direction: column;
+  }
+
+  li {
+    width: 100%;
+    opacity: 1;
+    transform: translateY(15px);
+  }
+
+  li > a {
+    line-height: 1;
+    padding: 1.6rem;
+  }
+
+  li:hover > a {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .log-sign {
+    flex: initial;
+    width: 100%;
+    padding: 1.5rem 1.9rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    opacity: 1;
+    transform: translateY(15px);
+  }
+}
+
+
+.contents {
+  max-width: 1500px;
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+
+.rt {
+  overflow-x:auto;
+}
+ul {
+  List-style-type: disc;
+}
+
+table {
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 1em;
+}
+
+table th,
+td {
+  border-bottom: 1px solid black;
+}
+
+table tr:last-child>th {
+  border-bottom: 0em;
+}
+
+table tr:last-child>td {
+  border-bottom: 0em;
+}
+th {
+  text-align: center;
+  padding: 20px;
+}
+
+.thd {
+  border-right: 1px solid black;
+  text-align: center;
+  padding: 20px;
+}
+
+.tda {
+  border-right: 1px solid black;
+}
+
+td {
+  text-align: left;
+  padding: 20px;
+}
+
+.c7head {
+  margin-top: 10px;
+}
+
+.c6b{
+  padding: 20px;
+}
+
+.rt::-webkit-scrollbar {
+  width: 0.1rem;
+}
+
+.rt::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2vmax;
+  margin-top: 56px;
+}
+
+.rt::-webkit-scrollbar-thumb {
+  width: 2px;
+  background: rgba(0, 0, 0, .21);
+  border-radius: 2vmax;
+  
+}
+    </style>
+</head>
+
+<body>
+    <header>
+      <div class="container">
+        <input type="checkbox" name="" id="check" />
+        <div class="logo-container">
+          <a href="index.html"><h3 class="logo">Formulary</h3></a>
+        </div>
+
+        <div class="nav-btn">
+          <div class="nav-links">
+            <ul class="ch">
+              <li><a href="index.html" >Home</a></li>
+              <li><a href="class7.html" >Class 7</a></li>
+              <li><a href="class8.html" >Class 8</a></li>
+              <li><a href="class9.html" >Class 9</a></li>
+              <li><a href="class10.html" >Class 10</a></li>
+            </ul>
+          </div>
+          <div class="log-sign">
+            <a href="contact.html" class="btn solid">Contact</a>
+          </div>
+        </div>
+        <div class="hamburger-menu-container">
+          <div class="hamburger-menu">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="overlay">
+          <div class="contents">
+            <center>
+                <div class="c7head" style="
+                background-color: rgba(255, 255, 255, 0.65);
+                border-radius: 3vmax;
+                width: 50%;
+                box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.05);
+                padding: 20px;
+              ">
+                    <h1>Maths Formulas for Class 6</h1>
+                </div>
+                <br />
+            </center>
+    
+            <div class="c6b" style="
+              background-color: rgba(255, 255, 255, 0.65);
+              border-radius: 3vmax;
+              box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.05);
+              padding-right: 30px;
+              padding-bottom: 30px;
+              padding-top: 30px;
+              padding-left: 55px;
+              margin-right: .7rem;
+              margin-bottom: 1rem;
+              margin-left: 1rem;
+            ">
+                <h2>Knowing The Numbers</h2><br>
+                <p>
+                    Numbers starting from 1, 2, 3, 4, … and so on are known as natural
+                    numbers. A group of digits together forms a number where the digits
+                    can only be 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9.
+                </p><br>
+                <ol>
+                    <li>
+                        There are two methods of representing a number:
+                        <ul>
+                            <li>Indian System of Numeration</li>
+                            <li>International System of Numeration</li>
+                        </ul><br>
+                    </li>
+                    <br />
+                    <li>
+                        Place Value of a digit in a number = Face Value × Position Value
+                    </li>
+                    <br />
+                    <li>
+                        For two numbers, the number with more digits is always the greater
+                        number. In case, two numbers have the same digit, then you can start
+                        comparing the leftmost digit of the two numbers.
+                    </li>
+                    <br />
+                    <li>
+                        If you want to make the smallest number, then you have to start by
+                        choosing 1 in the leftmost part and adding zeroes. For example, the
+                        smallest four-digit number is 1000.
+                    </li>
+                    <br />
+                    <li>
+                        If you want to make the largest number, then you have to start by
+                        choosing 9 in the leftmost part. For example, the largest four-digit
+                        number is 9999.
+                    </li>
+                    <br />
+                    <li>
+                        Quantity weights:
+                        <ul>
+                            <li>1 kilometre (km) = 1000 Metres (m)</li>
+                            <li>1 Metre (m) = 100 Centimetre (cm)</li>
+                            <li>1 Centimetre (cm) = 10 Millimetre (mm)</li>
+                            <li>1 Kilogram (kg) = 1000 Grams (gm)</li>
+                            <li>1 Litre (l) = 1000 Millilitres (ml)</li>
+                        </ul>
+                    </li><br><br>
+                    <li>Roman Numerals:
+                <ul>
+                    <li> I – 1</li>
+                    <li> II – 2</li>
+                    <li>V – 5</li>
+                    <li> X – 10</li>
+                    <li> L – 50</li>
+                    <li>C – 100</li>
+                    <li>D – 500</li>
+                    <li> K – 1000</li>
+                </ul>
+            </li><br><br>
+            <li> You can add or subtract the roman numerals by writing the desired quantity in either left or right; such as, 21 can be written as XXI and 49 ILIX.</li>
+                </ol><br><br>
+                <h2>Whole Numbers</h2><br>
+        
+            <p>Numbers starting from 0, 1, 2, 3, … and so on are known as whole numbers. A number that divides the other number without leaving any remainder is the factor of that number.</p>
+            <ol>
+                <li>A multiple of a number is exactly divisible by the number.</li>
+                <br>
+                <li>Number ‘1’ is said to be the factor of every number and is the number that has exactly one factor.</li>
+                <br>
+                <li> Numbers which are divisible by 2 are known as even numbers while numbers which are not divisible by 2 are known as odd numbers.</li>
+                <br>
+                <li>Divisibility rules:
+                    <br>
+                    <br>
+                    <ul>
+                        <li> A number is divisible by 2 if the unit’s digit number is 0, 2, 4, 6 and 8.</li>
+                        <br>
+                        <li>A number is divisible by 3 if the sum of all its digits is divisible by 3.</li>
+                        <br>
+                        <li>A number is divisible by 4 if the digit in its tens and units place is divisible by 4.</li>
+                        <br>
+                        <li>A number is divisible by 5 if the unit’s digit of the number is 0 and 5.</li>
+                        <br>
+                        <li>A number is divisible by 6 if it holds the divisibility rule for 2 and 3 true.</li>
+                        <br>
+                        <li>A number is divisible by 8 if the number formed in its hundreds, digits and units place is divisible by 8.</li>
+                        <br>
+                        
+                        <li> A number is divisible by 9 if the sum of the digits of the number is divisible by 9.</li>
+                        <br>
+                        <li>A number is divisible by 10 if the unit’s place digit is 0.</li>
+                        <br>
+                        <li> A number is divisible by 11 if the difference of the sum of its digits in odd places and the sum of its digits in even places is either 0 or divisible by 11.</li>
+                    </ul><br>
+                </li>
+                <br>
+                <li> LCM (Least Common Multiple) of two numbers a and b is the smallest positive integer which is divisible by both a and b.</li>
+                <br>
+                <li>HCF (Highest Common Factor) of two numbers a and b is the largest positive integer that divides each of these given integers.</li>
+                <br>
+                <li> If a, b and c are the whole numbers, then
+                    <br>
+                    <br>
+                     <div class="rt">
+                    <table>
+                        <tr>
+                            <th class="thd">Property</th>
+                            <th>Implementation</th>
+                        </tr>
+                        <tr>
+                            <td class="tda">Closure Property of Addition</td>
+                            <td>a + b</td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Closure Property of Multiplication	</td>
+                            <td>	a × b</td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Associativity of Addition</td>
+                            <td>(a + b) + c = a + (b + c)</td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Associativity of Multiplication</td>
+                            <td>a × (b × c) = (a × b) × c</td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Distributive of Multiplication over Addition</td>
+                            <td>a × (b + c) = a × b + a × c</td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Distributive of Multiplication over Subtraction	</td>
+                            <td>a × (b – c) = a × b – a × c</td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Existence of Multiplicative Identity</td>
+                            <td>a + 0 = a = 0 + a </td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Existence of Multiplicative Identity</td>
+                            <td>a × 0 = 0 = 0 × a</td>
+                        </tr>
+                        <tr>
+                            <td class="tda">Unit Multiplication</td>
+                            <td>a × 1 = a = 1 × a</td>
+                        </tr>
+                    </table></div>
+                </li>
+            </ol><br><br>
+            <h2>Geometry</h2><br>
+            <p>Geometry is the study of different shapes or figures.</p>
+            <ol>
+                <li>A line segment corresponds to the shortest distance between two points. The line segment joining points A and B is denoted by <em>AB    </em>
+                </li>
+                <br>
+                <li>Two distinct lines meeting at a point are called intersecting lines. Two parallel lines will never intersect each other.</li>
+                <br>
+                <li>A polygon is a simple closed figure comprising different line segments.
+                    <ul>
+                        <li>The line segments are the sides of the polygon.</li>
+                        <br>
+                        <li>Any two sides with a common endpoint are said to be adjacent sides.</li>
+                        <br>
+                        <li>The point where a pair of sides meet is called a vertex.</li>
+                        <br>
+                        <li>The endpoints located on the same sides are adjacent vertices.</li>
+                        <br>
+                        <li>The line segment joining the endpoints of any two non-adjacent vertices is called a diagonal.</li>
+                        <br>
+                    </ul>
+                </li><br>
+                <li>A quadrilateral is a four-sided polygon. In a quadrilateral ABCD, <em>AB & DC</em> and <em>AD & BC</em> are pairs of opposite sides.<em>∠A & ∠C</em> and <em>∠B & ∠D</em> are pairs of opposite angles. are pairs of opposite angles.<em>∠A</em> is adjacent to <em>∠B & ∠D</em>; similar relations hold for the other three angles as well.
+                </li>
+            </ol><br><br>
+            <h2>Integers</h2><br>
+            <p>The Numbers -∞, ..., -3, -2, -1, 0, 1, 2, 3,... ,∞  are considered as integers. where 1, 2, 3, … are positive integers and -1, -2, -3, … are negative integers. </p>
+            <ol>
+                <br>
+                <li> 0 is less than every positive integer and greater than every negative integer.</li>
+                <br>
+                <li>The sum of all the positive integers and negative integers is zero.</li>
+                <br>
+                <li>The absolute value of an integer ∣<em>a</em>∣ is the numerical value of an integer without regard to its sign.
+                <ul>
+                    <li>∣<em>a</em>∣ = a, if a is positive</li>
+                    <br>
+                    <li> ∣<em>a</em>∣ = -a, if a is negaative</li>
+                </ul></li><br>
+                <br>
+                <li>The sum of two integers (same sign) results to an integer of the same sign to which the total absolute value is equal to the sum of the absolute values of two integers.</li>
+            </ol><br><br>
+            <h2>Mensuration</h2><br>
+            <ol>
+                <li>Perimeter is the distance covered by going along the boundary of a closed figure till the point from where you started.
+                <ul>
+                    <li> Perimeter of a rectangle = 2 × (length + breadth)</li>
+                    <li>Perimeter of a square = 4 × length of its side</li>
+                    <li>Perimeter of an equilateral triangle = 3 × length of a side</li>
+                    
+                </ul></li><br>
+                <br>
+                <li>Figures in which all sides and angles are equal are called regular closed figures.</li>
+                <br>
+                <li>The amount of surface enclosed by a closed figure is called its area.</li>
+                <br>
+                <li>To calculate the area of a figure using a squared paper, the following conventions are adopted:
+                    <ul>
+                        <li>Ignore portions of the area that are less than half a square.</li>
+                        <li>If more than half a square is in a region. Count it as one square.</li>
+                        <li> If exactly half the square is counted, take its area as <sup>1</sup>&frasl;<sub>2</sub> sq units.</li>
+                    </ul>
+                </li><br>
+                <br>
+                <li>Area of a rectangle = length × breadth</li>
+                <br>
+                <li>Area of a square = side × side = (side)<sup>2</sup></li>
+            </ol><br><br>
+            <h2>Algebra</h2><br>
+            <p>Algebra is the study of unknown quantities. The letters used to represent some numbers are known as literals.</p>
+            <ol>
+                <li>The combination of literal numbers obey all the basic rules of addition, subtraction, multiplication and division along with the properties of such operation.</li>
+                <br><li>x × y = xy; such as 5 × a = 5a = a × 5.</li>
+                <br>
+                <li> a × a × a × … 9 times = a<sup>12</sup></li>
+                <br>
+                <li>Let’s suppose a number is x<sup>8</sup>, then x is the base and the exponent is 8.</li>
+                <br>
+                <li>A constant is a symbol with a fixed numerical value.</li>
+            </ol><br><br>
+            <h2>Ratio And Proportion</h2><br>
+            <p>The ratio of any number “a” to another number “b” (where b ≠ 0) is basically the fraction <sup>a</sup>&frasl;<sub>b</sub> 
+     
+                . It is written as a : b.</p>
+            <ol>
+                <li>The ratio of two numbers is always expressed in their simplest form. For example, <sup>6</sup>&frasl;<sub>8</sub> 
+     
+                    will be further reduced to <sup>3</sup>&frasl;<sub>4</sub>
+                    
+                   .</li>
+                   <br>
+                <li>An equality of two ratios is known as the proportion such that a : b = c : d if and only if ad = bc.</li>
+                <br>
+                <li>If a : b = b : c, then a, b and c are in continued proportion.</li>
+                <br>
+                <li> If a, b and c are in continued proportion, a : b :: b : c, then b is represented as the mean proportional between a and c.</li>            
+                <br>
+                <li><em>Value of one article = </em> <sup>Value of given number of articles</sup>&frasl;<sub>Number of articles</sub>(Unitary Method)<br>
+                    where more the number of articles, more is the value and vice-versa.</li>
+            </ol><br>
+            </div>
+        </div>
+      </section>
+    </main>
+</body>
+
+</html>
